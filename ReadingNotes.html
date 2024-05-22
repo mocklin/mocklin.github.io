@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reading Notes</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li>
+                <a href="reading_notes.md">数据分析</a>
+                <ul>
+                    <li><a href="machine_learning.md">机器学习解释</a></li>
+                    <li><a href="intermediate_machine_learning.md">中级机器学习</a></li>
+                </ul>
+            </li>
+            <!-- Add more navigation links here -->
+        </ul>
+    </div>
+    <div id="content">
+        <!-- Content will be inserted here -->
+    </div>
+    <script>
+        document.querySelectorAll('#nav a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                fetch(this.href)
+                    .then(response => response.text())
+                    .then(text => {
+                        document.getElementById('content').innerHTML = marked(text);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
